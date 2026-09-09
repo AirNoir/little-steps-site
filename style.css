@@ -1,0 +1,125 @@
+/* 小步腳印 官網 — 色票沿用 App（SPEC.md §色彩） */
+:root {
+  --bg:      #FAF7F2;
+  --panel:   #FFFFFF;
+  --panel-2: #F1ECE3;
+  --text:    #1A2332;
+  --muted:   #6B665E;
+  --subtle:  #8A857C;
+  --primary: #2C5F5D;
+  --accent:  #C97B5A;
+  --line:    #E6DFD4;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC",
+               "Microsoft JhengHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  font-size: 16px;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--primary); }
+
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+/* ── 頁首 ───────────────────────────── */
+.topbar { border-bottom: 1px solid var(--line); background: var(--panel); }
+.topbar .wrap {
+  display: flex; align-items: center; gap: 12px;
+  padding-top: 14px; padding-bottom: 14px; flex-wrap: wrap;
+}
+.topbar img { width: 34px; height: 34px; border-radius: 9px; }
+.topbar strong { font-size: 1.05rem; color: var(--primary); }
+.topbar nav { margin-left: auto; display: flex; gap: 18px; font-size: .92rem; }
+.topbar nav a { text-decoration: none; color: var(--muted); }
+.topbar nav a:hover { color: var(--primary); text-decoration: underline; }
+
+/* ── Hero ───────────────────────────── */
+.hero { text-align: center; padding: 56px 0 8px; }
+.hero img.appicon {
+  width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 20px;
+  box-shadow: 0 6px 20px rgba(44,95,93,.16);
+}
+.hero h1 { font-size: 2rem; margin: 0 0 10px; color: var(--primary); line-height: 1.35; }
+.hero p.lede { font-size: 1.08rem; color: var(--muted); margin: 0 auto; max-width: 34em; }
+.badge {
+  display: inline-block; margin-top: 26px; padding: 10px 22px; border-radius: 999px;
+  background: var(--panel-2); color: var(--muted); font-size: .95rem;
+  border: 1px solid var(--line);
+}
+.badge.live { background: var(--primary); color: #fff; border-color: var(--primary); text-decoration: none; }
+
+/* ── 區塊 ───────────────────────────── */
+section { padding: 44px 0; }
+h2 { font-size: 1.3rem; color: var(--primary); margin: 0 0 6px; }
+h2 + .sub { color: var(--subtle); margin: 0 0 24px; font-size: .95rem; }
+h3 { font-size: 1.02rem; margin: 26px 0 6px; }
+
+.cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.card {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 16px; padding: 20px;
+}
+.card h3 { margin: 0 0 6px; font-size: 1.02rem; color: var(--text); }
+.card p { margin: 0; color: var(--muted); font-size: .94rem; }
+
+/* ── 截圖 ───────────────────────────── */
+.shots { display: flex; gap: 16px; overflow-x: auto; padding: 4px 0 14px; }
+.shots figure { margin: 0; flex: 0 0 auto; width: 210px; }
+.shots img { border-radius: 16px; border: 1px solid var(--line); }
+.shots figcaption { font-size: .85rem; color: var(--subtle); text-align: center; margin-top: 8px; }
+
+/* ── 價格 ───────────────────────────── */
+.plans { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.plan { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+.plan.pro { border-color: var(--primary); }
+.plan .name { font-weight: 600; color: var(--primary); }
+.plan .price { font-size: 1.5rem; margin: 8px 0 2px; }
+.plan .price small { font-size: .9rem; color: var(--subtle); font-weight: 400; }
+.plan ul { margin: 12px 0 0; padding-left: 1.2em; color: var(--muted); font-size: .94rem; }
+
+/* ── FAQ ────────────────────────────── */
+details {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 14px; padding: 14px 18px; margin-bottom: 10px;
+}
+details[open] { border-color: var(--primary); }
+summary { cursor: pointer; font-weight: 600; }
+summary::marker { color: var(--primary); }
+details p, details ul { color: var(--muted); font-size: .95rem; }
+details p:last-child, details ul:last-child { margin-bottom: 0; }
+
+/* ── 聯絡 ───────────────────────────── */
+.contact {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 16px; padding: 22px;
+}
+.contact .mail { font-size: 1.1rem; font-weight: 600; }
+
+/* ── 內文頁（隱私政策）───────────────── */
+.doc h1 { font-size: 1.6rem; color: var(--primary); }
+.doc .updated { color: var(--subtle); font-size: .9rem; margin-top: -8px; }
+.doc h2 { font-size: 1.12rem; margin-top: 2rem; }
+.doc p { color: var(--text); }
+
+/* ── 免責與頁尾 ─────────────────────── */
+.disclaimer {
+  margin-top: 36px; padding: 14px 18px; background: var(--panel-2);
+  border-radius: 12px; font-size: .88rem; color: var(--muted);
+}
+footer {
+  border-top: 1px solid var(--line); margin-top: 40px;
+  padding: 26px 0 40px; font-size: .88rem; color: var(--subtle);
+}
+footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+footer nav { margin-left: auto; display: flex; gap: 18px; }
+
+@media (max-width: 560px) {
+  .hero { padding-top: 36px; }
+  .hero h1 { font-size: 1.6rem; }
+  section { padding: 32px 0; }
+}
