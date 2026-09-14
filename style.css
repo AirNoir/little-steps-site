@@ -262,16 +262,50 @@ details ul { margin: 0; padding-left: 1.2em; }
 .cta-band h2 { color: #fff; font-size: clamp(2rem, 3.4vw, 2.8rem); }
 .cta-band .sub { color: rgba(255,255,255,.72); margin: 14px 0 30px; font-size: 1.05rem; }
 
-/* ── 內文頁（隱私政策、支援）─────────── */
-.doc { padding: 56px 22px 40px; max-width: 780px; }
-.doc h1 { font-family: var(--font-display); font-size: 2rem; color: var(--primary-deep); margin-bottom: 6px; }
-.doc .updated { color: var(--subtle); font-size: .9rem; margin: 0 0 24px; }
-.doc h2 { font-family: var(--font); font-size: 1.18rem; margin: 2.2rem 0 .6rem; color: var(--primary-deep); }
-.doc p { color: var(--ink); margin: 0 0 1em; }
+/* ── 內文頁（支援、隱私）─────────────── */
+.page { padding: 56px 0 80px; }
+.page .wrap.narrow { max-width: 760px; }
+.page-head { margin-bottom: 32px; }
+.page-head .eyebrow { margin-bottom: 8px; }
+.page-head h1, .doc h1 {
+  font-family: var(--font-display); font-size: clamp(1.9rem, 3vw, 2.4rem);
+  color: var(--primary-deep); margin: 0 0 12px;
+}
+.page-head .lede { color: var(--muted); font-size: 1.04rem; }
+.contact {
+  display: grid; grid-template-columns: 1fr; gap: 14px;
+  padding: 26px 28px; background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--r-lg); box-shadow: var(--shadow-sm); margin-bottom: 64px;
+}
+.contact-label { display: block; font-size: .78rem; letter-spacing: .14em; color: var(--subtle); font-weight: 700; margin-bottom: 4px; }
+.contact .mail { font-size: 1.3rem; font-weight: 700; text-decoration: none; color: var(--primary-deep); word-break: break-all; }
+.contact .mail:hover { color: var(--primary); text-decoration: underline; }
+.contact-hint { color: var(--muted); font-size: .93rem; border-top: 1px solid var(--line); padding-top: 14px; }
+.faq h2 { font-size: clamp(1.5rem, 2.4vw, 1.9rem); margin-bottom: 18px; }
+.faq-jump { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+.faq-jump a {
+  padding: 6px 14px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line);
+  color: var(--muted); text-decoration: none; font-size: .88rem; font-weight: 500;
+}
+.faq-jump a:hover { border-color: var(--primary); color: var(--primary); }
+.faq h3 {
+  display: flex; align-items: center; gap: 14px;
+  font-size: .84rem; letter-spacing: .16em; color: var(--accent);
+  margin: 44px 0 14px; scroll-margin-top: 90px;
+}
+.faq h3::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.faq details { margin-bottom: 10px; }
+.faq summary { font-size: 1rem; }
+.faq details p { margin: 0 0 10px; padding-bottom: 0; }
+.faq details p:last-child { margin-bottom: 0; padding-bottom: 20px; }
+.page .disclaimer { margin-top: 56px; }
+/* 隱私權政策（沿用原本 .doc 標記） */
+.doc { max-width: 760px; }
 .doc section { padding: 0; }
+.doc .updated { color: var(--subtle); font-size: .9rem; margin: -4px 0 28px; }
+.doc h2 { font-family: var(--font); font-size: 1.15rem; margin: 2.2rem 0 .6rem; color: var(--primary-deep); }
+.doc p { color: var(--ink); margin: 0 0 1em; }
 .doc .disclaimer { margin-top: 36px; }
-.contact { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-md); padding: 22px; }
-.contact .mail { font-size: 1.1rem; font-weight: 600; }
 .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-md); padding: 20px; }
 .card h3 { margin: 0 0 6px; font-size: 1.02rem; }
@@ -285,7 +319,8 @@ details ul { margin: 0; padding-left: 1.2em; }
 }
 footer { padding: 56px 0 48px; font-size: .9rem; color: var(--subtle); border-top: 1px solid var(--line); background: var(--bg); }
 footer .wrap { display: grid; grid-template-columns: 1fr auto; gap: 22px 40px; align-items: center; }
-.foot-brand { display: flex; align-items: center; gap: 14px; color: var(--ink); }
+.foot-brand { display: flex; align-items: center; gap: 14px; color: var(--ink); text-decoration: none; }
+.foot-brand:hover strong { color: var(--primary-deep); text-decoration: underline; }
 .foot-brand img { width: 44px; height: 44px; border-radius: 12px; box-shadow: var(--shadow-sm); }
 .foot-brand strong { color: var(--primary); font-size: 1.05rem; }
 .foot-brand span { color: var(--subtle); font-size: .86rem; }
@@ -324,4 +359,7 @@ footer .wrap > span { color: var(--subtle); }
   .plans { grid-template-columns: 1fr; }
   .shots figure { width: 200px; }
   footer .wrap { grid-template-columns: 1fr; }
+  .page { padding: 32px 0 56px; }
+  .contact { padding: 20px; margin-bottom: 44px; }
+  .faq h3 { margin-top: 36px; }
 }
