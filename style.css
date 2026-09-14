@@ -110,7 +110,7 @@ h3 { font-size: 1.12rem; color: var(--ink); }
 .poster img { width: 100%; height: auto; }
 /* 海報上「在 App Store 下載」鈕的位置（百分比，對應 1536×1024 原圖） */
 .poster-cta {
-  position: absolute; left: 4.2%; top: 64.6%; width: 27%; height: 8.2%;
+  position: absolute; left: 4.2%; top: 61.5%; width: 27%; height: 8.2%;
   border-radius: 999px; cursor: pointer;
   transition: box-shadow .15s ease;
 }
