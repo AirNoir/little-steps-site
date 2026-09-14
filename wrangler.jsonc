@@ -1,0 +1,15 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "little-steps-site",
+  "compatibility_date": "2026-09-14",
+  "assets": {
+    "directory": "./",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "littlestep.me", "custom_domain": true },
+    { "pattern": "www.littlestep.me", "custom_domain": true }
+  ],
+  "observability": { "enabled": true }
+}
