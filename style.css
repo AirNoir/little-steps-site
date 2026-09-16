@@ -77,6 +77,8 @@ p { margin: 0; }
 .topbar nav { margin-left: auto; display: flex; gap: 26px; font-size: .94rem; }
 .topbar nav a { text-decoration: none; color: var(--muted); font-weight: 500; }
 .topbar nav a:hover { color: var(--primary); }
+.topbar { position: relative; }
+.nav-burger, .nav-toggle { display: none; }
 .topbar .btn { margin-left: 4px; }
 /* 內文頁（隱私、支援）的頁首沿用舊標記：img + strong + nav */
 .topbar .wrap > strong { color: var(--primary); font-size: 1.08rem; }
@@ -348,7 +350,25 @@ footer .wrap > span { color: var(--subtle); }
   .features { grid-template-columns: repeat(2, 1fr); }
   .promises { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: 1fr; gap: 16px; }
+  .topbar .nav-burger {
+    display: flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 44px; height: 44px; margin-left: auto; cursor: pointer;
+  }
+  .topbar .nav-burger span {
+    display: block; width: 24px; height: 2px; border-radius: 2px;
+    background: var(--primary); transition: transform .2s, opacity .2s;
+  }
   .topbar .mainnav { display: none; }
+  .topbar .nav-toggle:checked ~ .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .topbar .nav-toggle:checked ~ .nav-burger span:nth-child(2) { opacity: 0; }
+  .topbar .nav-toggle:checked ~ .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .topbar .nav-toggle:checked ~ .mainnav {
+    display: flex; flex-direction: column; gap: 0;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: #fff; box-shadow: 0 10px 24px rgba(0,0,0,.12);
+    padding: 6px 0; z-index: 60;
+  }
+  .topbar .nav-toggle:checked ~ .mainnav a { padding: 14px 24px; }
 }
 @media (max-width: 760px) {
   section { padding: 56px 0; }
