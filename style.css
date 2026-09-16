@@ -206,7 +206,7 @@ h3 { font-size: 1.12rem; color: var(--ink); }
 .shots figcaption { font-size: .88rem; color: rgba(255,255,255,.75); text-align: center; margin-top: 14px; }
 
 /* ── 方案 ─────────────────────────────── */
-.plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 880px; margin: 0 auto; }
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; max-width: 1120px; margin: 0 auto; }
 .plan {
   position: relative; background: var(--panel); border: 1px solid var(--line);
   border-radius: var(--r-lg); padding: 34px 32px 32px; box-shadow: var(--shadow-sm);
@@ -349,6 +349,7 @@ footer .wrap > span { color: var(--subtle); }
   section { padding: 72px 0; }
   .features { grid-template-columns: repeat(2, 1fr); }
   .promises { grid-template-columns: repeat(2, 1fr); }
+  .plans { grid-template-columns: 1fr; max-width: 420px; }
   .steps { grid-template-columns: 1fr; gap: 16px; }
   .topbar .nav-burger {
     display: flex; flex-direction: column; justify-content: center; gap: 5px;
