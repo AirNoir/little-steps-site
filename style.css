@@ -374,6 +374,7 @@ footer .wrap > span { color: var(--subtle); }
   section { padding: 56px 0; }
   .topbar .wrap { height: 62px; gap: 14px; }
   .brand-text small { display: none; }
+  .topbar .btn-store { display: none; } /* 手機已有漢堡選單＋下方大 CTA，header 按鈕多餘 */
   .hero { padding: 28px 0 48px; }
   .poster { display: none; }
   .hero-mobile { display: block; text-align: center; }
