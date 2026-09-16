@@ -373,3 +373,8 @@ footer .wrap > span { color: var(--subtle); }
   .contact { padding: 20px; margin-bottom: 44px; }
   .faq h3 { margin-top: 36px; }
 }
+
+/* App Store QR（頁尾 CTA；僅桌機顯示——手機掃自己的手機沒意義，直接點按鈕即可） */
+.cta-qr { margin-top: 22px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.cta-qr img { background: #fff; padding: 10px; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+@media (max-width: 760px) { .cta-qr { display: none; } }
