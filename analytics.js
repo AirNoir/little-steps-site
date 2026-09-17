@@ -19,7 +19,7 @@
  */
 (function () {
   var GTM_ID = '';   // 例：'GTM-ABC1234'
-  var GA4_ID = '';   // 例：'G-XXXXXXXXXX'
+  var GA4_ID = 'G-FG24RGC1FE';   // 2026-09-18 起直掛；之後切到 GTM 時要清空，避免重複計算
 
   window.dataLayer = window.dataLayer || [];
   var useGtm = /^GTM-[A-Z0-9]+$/.test(GTM_ID);
