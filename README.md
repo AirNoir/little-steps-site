@@ -64,3 +64,38 @@ ffmpeg -y -i out/promo90.mp4 -vf "select='eq(n\,420)',scale=720:1280" -fps_mode 
 章節時間點寫在 `index.html` 的 `.chapters` 裡（`data-t` 秒數），
 場景長度改了要跟著調；`Promo90.tsx` 的 `S` 物件是各幕的幀數，除以 30 就是秒。
 Cloudflare Workers 靜態資源單檔上限 25 MB，影片請維持在幾 MB 的規模。
+
+## 網站分析（GA4 / GTM）
+
+三頁都掛 `analytics.js`。**只要在檔案最上面填 ID**，其他不用動：
+
+| 變數 | 填什麼 | 說明 |
+|---|---|---|
+| `GTM_ID` | `GTM-XXXXXXX` | 建議路線。GA4 在 GTM 裡用「Google 代碼」設定，網頁只掛 GTM |
+| `GA4_ID` | `G-XXXXXXXXXX` | 只在不用 GTM、想直接掛 GA4 時填。兩邊都有 GA4 會重複計算 page_view |
+
+兩個都空白時不會載入任何第三方腳本。
+
+### GA4 自動就有的
+
+開啟 GA4 資源的「加強型評估」（預設開）就有：`page_view`、捲動 90%、外連點擊
+（App Store 按鈕是外連，會以 `click` 事件帶 `link_url` 出現）、檔案下載。
+
+### 自訂事件怎麼接到 GA4（GTM 三步）
+
+`analytics.js` 送到 dataLayer 的事件見檔頭註解。在 GTM 裡：
+
+1. **變數**：新增「資料層變數」`cta_location`、`nav_location`、`link_text`、`link_url`、`question`、`video_title`、`percent`、`chapter_title`、`chapter_time`。
+2. **觸發條件**：類型「自訂事件」，事件名稱勾「使用規則運算式比對」，填
+   `^(cta_click|nav_click|contact_click|faq_open|video_start|video_progress|video_complete|video_chapter)$`。
+3. **代碼**：類型「Google Analytics：GA4 事件」，事件名稱填 `{{Event}}`，
+   事件參數逐一對應上面的變數（參數名＝變數名），觸發條件選第 2 步那個。
+
+發布容器後，GA4 的「即時」報表點一下網站的 App Store 按鈕，應該立刻看到 `cta_click`。
+
+### 之後可以加的
+
+- 海報與頁尾的 QR 目前直接指向 App Store 商品頁。若要在 App Store Connect 分辨「QR 掃描」與「按鈕點擊」，
+  可用 App Analytics 的行銷活動連結（`?pt=<provider token>&ct=site_qr&mt=8`）重產 QR。
+- 隱私權政策目前只寫 App 的資料處理，沒提到官網用 Google Analytics；正式啟用前建議補一段「官網瀏覽統計」
+  （三份複本一起改，見 App repo CLAUDE.md）。
