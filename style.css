@@ -117,6 +117,21 @@ h3 { font-size: 1.12rem; color: var(--ink); }
   transition: box-shadow .15s ease;
 }
 .poster-cta:hover, .poster-cta:focus-visible { box-shadow: 0 0 0 3px rgba(255,255,255,.9), 0 0 0 6px var(--accent); outline: none; }
+/* 海報右側的 QR 貼紙（緊鄰下載鈕；1000px 以下太小掃不到就藏起來，手機版 hero 本來就不放） */
+.poster-qr {
+  position: absolute; left: 33.2%; top: 58.8%; width: 9.6%;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 9px 8px 8px; border-radius: 14px;  /* 百分比 padding 會以海報寬度計算，不能用 */
+  background: rgba(255,255,255,.94); color: var(--primary-deep); text-decoration: none;
+  box-shadow: 0 10px 26px rgba(27,42,47,.18), 0 1px 3px rgba(27,42,47,.08);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  transform: rotate(-2deg);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.poster-qr:hover, .poster-qr:focus-visible { transform: rotate(0) scale(1.04); box-shadow: 0 14px 32px rgba(27,42,47,.24), 0 0 0 3px var(--accent-soft); outline: none; }
+.poster-qr img { width: 100%; height: auto; }
+.poster-qr span { font-size: clamp(9px, .74vw, 11px); line-height: 1.35; font-weight: 700; letter-spacing: .04em; text-align: center; white-space: nowrap; }
+@media (max-width: 1000px) { .poster-qr { display: none; } }
 .hero-mobile { display: none; }
 .trust {
   list-style: none; margin: 36px 0 0; padding: 0;
