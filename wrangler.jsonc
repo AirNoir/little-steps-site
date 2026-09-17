@@ -2,8 +2,13 @@
   "$schema": "https://unpkg.com/wrangler/config-schema.json",
   "name": "little-steps-site",
   "compatibility_date": "2026-09-14",
+  // 只為影片的 Range 支援而存在，見 worker.js
+  "main": "worker.js",
   "assets": {
     "directory": "./",
+    "binding": "ASSETS",
+    // 只有 mp4 進 Worker，其他路徑直接由靜態資源回應
+    "run_worker_first": ["/assets/*.mp4"],
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },

@@ -15,6 +15,10 @@ App 原始碼在 `AirNoir/little-steps-v2`，是私有 repo。GitHub Pages 從�
 
 ## 純靜態，沒有建置步驟
 
+唯一的例外是 `worker.js`：Cloudflare Workers 靜態資源不支援 HTTP Range，
+而 Safari／iPhone 播 `<video>` 一定要 Range，所以 mp4 路徑會先進這個 Worker 切片回 206
+（`wrangler.jsonc` 的 `run_worker_first`）。其他頁面與圖片仍是純靜態，改完直接部署。
+
 直接改 HTML 與 `style.css`，push 上去 GitHub Pages 就會更新。
 
 本機預覽：
