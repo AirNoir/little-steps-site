@@ -39,3 +39,24 @@ python3 -m http.server 8899
 
 政策本文與 App repo 的 `docs/privacy.html` 相同。**改的時候兩邊要一起改**，
 App 內的隱私頁讀的是 App repo 那一份。
+
+## 宣傳影片
+
+首頁 `#video` 區塊播的是 App repo `marketing/promo` 用 Remotion 渲染的 90 秒直式影片
+（`out/promo90.mp4`，1080×1920）。官網放的是縮成 720p 的網頁版，
+含 `faststart` 讓它邊下載邊播；海報圖取第 14 秒那一格。重新渲染後照下面重做：
+
+```bash
+# 在 App repo 的 marketing/promo 目錄
+ffmpeg -y -i out/promo90.mp4 \
+  -vf "scale=720:1280:in_range=full:out_range=limited,format=yuv420p" \
+  -c:v libx264 -profile:v high -level 4.0 -preset slow -crf 23 \
+  -color_range tv -colorspace bt709 -color_primaries bt709 -color_trc bt709 \
+  -c:a aac -b:a 128k -movflags +faststart ../../../little-steps-site/assets/promo90.mp4
+ffmpeg -y -i out/promo90.mp4 -vf "select='eq(n\,420)',scale=720:1280" -fps_mode passthrough \
+  -frames:v 1 -q:v 3 ../../../little-steps-site/assets/promo-poster.jpg
+```
+
+章節時間點寫在 `index.html` 的 `.chapters` 裡（`data-t` 秒數），
+場景長度改了要跟著調；`Promo90.tsx` 的 `S` 物件是各幕的幀數，除以 30 就是秒。
+Cloudflare Workers 靜態資源單檔上限 25 MB，影片請維持在幾 MB 的規模。

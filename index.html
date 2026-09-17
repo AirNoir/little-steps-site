@@ -15,6 +15,11 @@
 <meta property="og:image:width" content="1536">
 <meta property="og:image:height" content="1024">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:video" content="https://littlestep.me/assets/promo90.mp4">
+<meta property="og:video:secure_url" content="https://littlestep.me/assets/promo90.mp4">
+<meta property="og:video:type" content="video/mp4">
+<meta property="og:video:width" content="720">
+<meta property="og:video:height" content="1280">
 <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png?v=2">
 <link rel="apple-touch-icon" href="assets/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,6 +39,20 @@
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "小步腳印 90 秒介紹影片",
+  "description": "從對著手機說一句話，到帶去回診的摘要：語音記錄、AI 整理、發展里程碑、治療師說明、回家練習打卡、全家共享與隱私承諾。",
+  "thumbnailUrl": "https://littlestep.me/assets/promo-poster.jpg",
+  "uploadDate": "2026-09-17",
+  "duration": "PT1M30S",
+  "contentUrl": "https://littlestep.me/assets/promo90.mp4",
+  "embedUrl": "https://littlestep.me/#video",
+  "inLanguage": "zh-Hant"
+}
+</script>
 </head>
 <body>
 
@@ -46,6 +65,7 @@
     <input type="checkbox" id="navtoggle" class="nav-toggle" hidden>
     <label for="navtoggle" class="nav-burger" aria-label="開關選單"><span></span><span></span><span></span></label>
     <nav class="mainnav">
+      <a href="/#video">影片</a>
       <a href="/#features">功能</a>
       <a href="/#screens">畫面</a>
       <a href="/#pricing">方案</a>
@@ -92,6 +112,42 @@
       <li>紀錄可匯出、可永久刪除</li>
       <li>錄音轉錄完成立即刪除</li>
     </ul>
+  </div>
+</section>
+
+<!-- ── 影片 ─────────────────────────────────────────── -->
+<section id="video" class="video-section">
+  <div class="wrap">
+    <div class="video-grid">
+      <div class="video-shell">
+        <video id="promo" width="720" height="1280" poster="assets/promo-poster.jpg" preload="metadata" playsinline controlslist="nodownload noremoteplayback">
+          <source src="assets/promo90.mp4" type="video/mp4">
+          你的瀏覽器無法播放影片，可以<a href="assets/promo90.mp4">直接下載</a>。
+        </video>
+        <button class="video-play" type="button" aria-label="播放 90 秒介紹影片">
+          <span class="video-play-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+          <span class="video-play-label">播放<small>1:30 · 有聲音</small></span>
+        </button>
+      </div>
+      <div class="video-copy">
+        <p class="eyebrow">90 秒影片</p>
+        <h2>一分半，看它怎麼陪你記錄</h2>
+        <p class="sub">從對著手機說一句話，到帶去回診的摘要。點章節可以直接跳到那一段。</p>
+        <ol class="chapters" aria-label="影片章節">
+          <li><button type="button" data-t="0"><time>0:00</time><span>每個孩子，都有自己的步調</span></button></li>
+          <li><button type="button" data-t="11.8"><time>0:12</time><span>對手機說一句話，就記下來</span></button></li>
+          <li><button type="button" data-t="18.7"><time>0:19</time><span>AI 自動整理成成長紀錄</span></button></li>
+          <li><button type="button" data-t="27.7"><time>0:28</time><span>發展里程碑，自動對照年齡</span></button></li>
+          <li><button type="button" data-t="34.0"><time>0:34</time><span>六大領域統計</span></button></li>
+          <li><button type="button" data-t="40.3"><time>0:40</time><span>錄下治療師交代的事</span></button></li>
+          <li><button type="button" data-t="49.2"><time>0:49</time><span>回家練習打卡</span></button></li>
+          <li><button type="button" data-t="62.0"><time>1:02</time><span>全家一起記</span></button></li>
+          <li><button type="button" data-t="67.8"><time>1:08</time><span>回診摘要一鍵匯出</span></button></li>
+          <li><button type="button" data-t="74.2"><time>1:14</time><span>孩子的紀錄，只屬於你</span></button></li>
+        </ol>
+        <p class="video-note">影片中的孩子與紀錄皆為示範資料。</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -331,5 +387,46 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  var v = document.getElementById('promo');
+  var shell = v && v.closest('.video-shell');
+  var playBtn = shell && shell.querySelector('.video-play');
+  var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapters button'));
+  if (!v || !shell) return;
+
+  function start(t) {
+    if (typeof t === 'number') { try { v.currentTime = t; } catch (e) {} }
+    v.controls = true;
+    shell.classList.add('is-started');
+    shell.classList.remove('is-ended');
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+  playBtn.addEventListener('click', function () { start(shell.classList.contains('is-ended') ? 0 : undefined); });
+  chapters.forEach(function (b) {
+    b.addEventListener('click', function () {
+      start(parseFloat(b.getAttribute('data-t')));
+      if (window.matchMedia('(max-width: 760px)').matches) {
+        shell.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+
+  v.addEventListener('play', function () { shell.classList.add('is-started'); shell.classList.remove('is-ended'); });
+  v.addEventListener('ended', function () { shell.classList.add('is-ended'); });
+  v.addEventListener('timeupdate', function () {
+    var cur = v.currentTime, active = null;
+    chapters.forEach(function (b) { if (cur + 0.25 >= parseFloat(b.getAttribute('data-t'))) active = b; });
+    chapters.forEach(function (b) { b.classList.toggle('is-active', b === active); });
+  });
+  // 滑離畫面就暫停，避免背景一直放音樂
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (!e.isIntersecting && !v.paused) v.pause(); });
+    }, { threshold: 0.15 }).observe(v);
+  }
+})();
+</script>
 </body>
 </html>
