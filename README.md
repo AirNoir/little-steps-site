@@ -33,6 +33,15 @@ python3 -m http.server 8899
 `index.html` 的 hero 區塊目前是「即將在 App Store 上線」的靜態文字，
 上架後換成註解裡那行 App Store 連結（App ID：6761771211）。
 
+## 社群連結
+
+官方 Threads：`https://www.threads.com/@littlestepstw`。出現在兩個地方，改的時候要一起改：
+
+- 三頁的頁尾 `<nav>`（`index.html`／`privacy.html`／`support.html`，同一段 HTML 複製三份）
+- `support.html` 聯絡卡片的「社群」那一列
+
+圖示是 simple-icons 的 Threads 字符，以 inline SVG 寫死，沒有額外請求。
+
 ## 素材來源
 
 `assets/` 的截圖來自 App repo 的 `appstore/screenshots/iphone-6.7/`，
