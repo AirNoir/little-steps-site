@@ -517,3 +517,27 @@ footer .wrap > span { color: var(--subtle); }
   .chapters button:hover { transform: none; }
   .video-play-btn { width: 72px; height: 72px; }
 }
+
+/* ── Cookie 同意（只對歐洲經濟區／英國／瑞士自動出現，見 analytics.js）── */
+.cookie-banner {
+  position: fixed; z-index: 1000;
+  left: 50%; bottom: 20px; transform: translateX(-50%);
+  width: min(560px, calc(100% - 32px));
+  background: var(--panel); color: var(--ink);
+  border: 1px solid var(--line); border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  padding: 18px 20px 16px;
+  font-size: .92rem; line-height: 1.7;
+}
+.cookie-banner strong { display: block; font-size: 1rem; margin-bottom: 2px; }
+.cookie-banner a { margin-left: 6px; }
+.cookie-banner .cookie-en { color: var(--muted); font-size: .82rem; margin-top: 6px; }
+.cookie-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 12px; }
+.cookie-actions .btn { border: 0; cursor: pointer; font-family: inherit; }
+.cookie-actions .cookie-decline { background: var(--cream); color: var(--ink); }
+.cookie-actions .cookie-decline:hover { background: var(--line); }
+@media (max-width: 480px) {
+  .cookie-banner { bottom: 12px; padding: 16px; }
+  .cookie-actions .btn { flex: 1; justify-content: center; }
+}
+.doc .cookie-settings { margin-top: 10px; border: 0; cursor: pointer; font-family: inherit; }
