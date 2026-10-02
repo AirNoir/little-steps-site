@@ -228,24 +228,56 @@
   </div>
 </section>
 
-<!-- ── 畫面 ─────────────────────────────────────────── -->
+<!-- ── 畫面（滾動導覽：手機框固定，截圖隨滾動切換）──── -->
 <section id="screens" class="screens-section">
+  <div class="screens-bg" aria-hidden="true"></div>
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">畫面</p>
-      <h2>看起來就像它用起來一樣安靜</h2>
-      <p class="sub">沒有跳出的提示、沒有廣告。打開就是孩子，和一顆錄音鈕。</p>
+      <h2>往下滑，看它怎麼陪你記</h2>
+      <p class="sub">從下課路上的一段話，到回診前的摘要。沒有跳出的提示、沒有廣告，打開就是孩子。</p>
     </div>
-  </div>
-  <div class="shots-rail">
-    <div class="shots">
-      <figure><img src="assets/01-home.png" width="560" height="1216" loading="lazy" alt="錄音主畫面"><figcaption>錄音主畫面</figcaption></figure>
-      <figure><img src="assets/02-stats.png" width="560" height="1216" loading="lazy" alt="六大領域統計"><figcaption>六大領域統計</figcaption></figure>
-      <figure><img src="assets/03-milestones.png" width="560" height="1216" loading="lazy" alt="發展里程碑"><figcaption>發展里程碑</figcaption></figure>
-      <figure><img src="assets/04-logs.png" width="560" height="1216" loading="lazy" alt="歷史紀錄"><figcaption>歷史紀錄</figcaption></figure>
-      <figure><img src="assets/05-programs.png" width="560" height="1216" loading="lazy" alt="回家練習"><figcaption>回家練習</figcaption></figure>
+    <div class="story">
+      <div class="story-stage" aria-hidden="true">
+        <div class="story-phone">
+          <img src="assets/01-home.png" width="560" height="1216" alt="" class="is-active">
+          <img src="assets/04-logs.png" width="560" height="1216" loading="lazy" alt="">
+          <img src="assets/03-milestones.png" width="560" height="1216" loading="lazy" alt="">
+          <img src="assets/02-stats.png" width="560" height="1216" loading="lazy" alt="">
+          <img src="assets/05-programs.png" width="560" height="1216" loading="lazy" alt="">
+        </div>
+        <ol class="story-dots">
+          <li class="is-active"></li><li></li><li></li><li></li><li></li>
+        </ol>
+      </div>
+      <ol class="story-steps">
+        <li class="story-step is-active">
+          <span class="story-num">01 · 錄音主畫面</span>
+          <h3>下課路上，對手機說一段話</h3>
+          <p>「今天自己把鞋子穿好了。」想到就說，不用打字、不用選分類，30 秒就記完。</p>
+        </li>
+        <li class="story-step">
+          <span class="story-num">02 · 歷史紀錄</span>
+          <h3>AI 幫你整理成紀錄</h3>
+          <p>自動轉成文字、歸進六大發展領域，情緒和進步都標好。往回翻，就是孩子的成長時間軸。</p>
+        </li>
+        <li class="story-step">
+          <span class="story-num">03 · 發展里程碑</span>
+          <h3>對照里程碑，心裡有個底</h3>
+          <p>內建 0–6 歲發展里程碑，依年齡推薦現在可以觀察的項目；早產寶寶自動以矯正年齡計算。</p>
+        </li>
+        <li class="story-step">
+          <span class="story-num">04 · 六大領域統計</span>
+          <h3>進步，看得見</h3>
+          <p>雷達圖與達成率，哪個領域在往前走、哪裡想多陪一點，一眼就看出來。</p>
+        </li>
+        <li class="story-step">
+          <span class="story-num">05 · 回家練習</span>
+          <h3>治療師交代的，都接得住</h3>
+          <p>回家練習每天打卡，回診前一鍵匯出摘要。下次被問「最近怎麼樣」，你有備而來。</p>
+        </li>
+      </ol>
     </div>
-    <p class="shots-hint">左右滑動查看更多畫面</p>
   </div>
 </section>
 
@@ -436,6 +468,55 @@
       entries.forEach(function (e) { if (!e.isIntersecting && !v.paused) v.pause(); });
     }, { threshold: 0.15 }).observe(v);
   }
+})();
+
+/* 畫面區滾動導覽：步驟捲到觸發帶時切換手機截圖；背景光暈微視差 */
+(function () {
+  var section = document.getElementById('screens');
+  if (!section || !('IntersectionObserver' in window)) return;
+  var steps = Array.prototype.slice.call(section.querySelectorAll('.story-step'));
+  var shots = Array.prototype.slice.call(section.querySelectorAll('.story-phone img'));
+  var dots  = Array.prototype.slice.call(section.querySelectorAll('.story-dots li'));
+  if (!steps.length || steps.length !== shots.length) return;
+
+  function activate(i) {
+    steps.forEach(function (el, k) { el.classList.toggle('is-active', k === i); });
+    shots.forEach(function (el, k) { el.classList.toggle('is-active', k === i); });
+    dots.forEach(function (el, k) { el.classList.toggle('is-active', k === i); });
+  }
+
+  // 手機版手機框 sticky 在上方，觸發帶要壓低到畫面下半，文字才不會在手機框後面就被切換
+  var io = null;
+  var mobile = window.matchMedia('(max-width: 760px)');
+  function buildObserver() {
+    if (io) io.disconnect();
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) activate(steps.indexOf(e.target));
+      });
+    }, { rootMargin: mobile.matches ? '-62% 0px -28% 0px' : '-46% 0px -46% 0px', threshold: 0 });
+    steps.forEach(function (s) { io.observe(s); });
+  }
+  buildObserver();
+  if (mobile.addEventListener) mobile.addEventListener('change', buildObserver);
+
+  // 背景光暈視差：依區塊在視窗中的進度輕微位移，尊重減少動態偏好
+  var bg = section.querySelector('.screens-bg');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var ticking = false;
+  function parallax() {
+    ticking = false;
+    if (!bg || reduce.matches) return;
+    var r = section.getBoundingClientRect();
+    var total = window.innerHeight + r.height;
+    var p = Math.max(0, Math.min(1, (window.innerHeight - r.top) / total));
+    bg.style.setProperty('--pll-a', ((p - 0.5) * 70).toFixed(1) + 'px');
+    bg.style.setProperty('--pll-b', ((0.5 - p) * 110).toFixed(1) + 'px');
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(parallax); }
+  }, { passive: true });
+  parallax();
 })();
 </script>
 </body>
