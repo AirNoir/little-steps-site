@@ -1,5 +1,5 @@
 /**
- * 官網本身是純靜態資源；這個 Worker 只處理兩件事：影片的 Range 請求，以及 /api/geo（cookie 同意用）。
+ * 官網本身是純靜態資源；這個 Worker 只處理三件事：影片的 Range 請求、/api/geo（cookie 同意用）、/go/* 追蹤連結。
  *
  * Workers 靜態資源不處理 HTTP Range（分段請求）——對 `Range: bytes=0-1023` 會照樣回整檔 200。
  * Safari（含 iPhone）播 <video> 一定要伺服器支援 Range，否則播不出來；章節跳轉也需要它。
@@ -13,8 +13,43 @@ const CONSENT_REGIONS = new Set([
   'IS', 'LI', 'NO', 'GB', 'CH',
 ]);
 
+// 行銷管道追蹤連結 /go/<管道>：記一筆點擊（只有管道、國家、手機種類）再轉走。
+// 任何符合格式的管道名都收，新管道不用重新部署；後台「註冊與活躍」頁看數字。
+// 表與函式在 App repo migration 20261006_link_clicks.sql。
+const APP_STORE_URL = 'https://apps.apple.com/tw/app/id6761771211';
+// Android 版還在封閉測試，先帶去官網首頁（FAQ 有說明）
+const ANDROID_URL = 'https://littlestep.me/';
+// 連結預覽爬蟲（Threads／FB／LINE 貼連結時會先抓一次）不算點擊
+const BOT_UA = /bot|crawl|spider|preview|facebookexternalhit|meta-externalagent|line-poker|whatsapp|telegram|slack|discord|curl|wget/i;
+
+async function handleGo(request, env, ctx, slug) {
+  const ua = request.headers.get('User-Agent') || '';
+  const platform = /iPhone|iPad|iPod|Macintosh/i.test(ua) ? 'ios' : /Android/i.test(ua) ? 'android' : 'other';
+  if (!BOT_UA.test(ua) && env.SUPABASE_URL && env.SUPABASE_ANON_KEY) {
+    // 不等寫入完成就轉址；失敗也不影響使用者
+    ctx.waitUntil(
+      fetch(`${env.SUPABASE_URL}/rest/v1/rpc/log_link_click`, {
+        method: 'POST',
+        headers: {
+          apikey: env.SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${env.SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ p_slug: slug, p_country: (request.cf && request.cf.country) || null, p_platform: platform }),
+      }).catch(() => {}),
+    );
+  }
+  return new Response(null, {
+    status: 302,
+    headers: { Location: platform === 'android' ? ANDROID_URL : APP_STORE_URL, 'Cache-Control': 'no-store' },
+  });
+}
+
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
+    const go = /^\/go\/([a-z0-9-]{1,30})\/?$/i.exec(new URL(request.url).pathname);
+    if (go) return handleGo(request, env, ctx, go[1].toLowerCase());
+
     // analytics.js 用來決定要不要先跳 cookie 同意彈窗（見 analytics.js）。
     // 只回一個布林值，不回國家代碼，也不記錄任何東西。
     if (new URL(request.url).pathname === '/api/geo') {
