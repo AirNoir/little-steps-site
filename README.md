@@ -15,11 +15,18 @@ App 原始碼在 `AirNoir/little-steps-v2`，是私有 repo。GitHub Pages 從�
 
 ## 純靜態，沒有建置步驟
 
-唯一的例外是 `worker.js`：Cloudflare Workers 靜態資源不支援 HTTP Range，
-而 Safari／iPhone 播 `<video>` 一定要 Range，所以 mp4 路徑會先進這個 Worker 切片回 206
-（`wrangler.jsonc` 的 `run_worker_first`）。其他頁面與圖片仍是純靜態，改完直接部署。
+例外是 `worker.js`，只有 `wrangler.jsonc` 的 `run_worker_first` 列出的路徑會進來：
 
-直接改 HTML 與 `style.css`，push 上去 GitHub Pages 就會更新。
+- `/assets/*.mp4`：Cloudflare Workers 靜態資源不支援 HTTP Range，而 Safari／iPhone 播 `<video>` 一定要 Range，
+  所以 mp4 在這裡切片回 206。
+- `/api/geo`：cookie 同意彈窗用，只回「這個地區要不要先問同意」的布林值。
+- `/go/<管道>`：行銷追蹤連結。記一筆點擊（管道、時間、國家、iPhone／Android，不記 IP）再 302 到 App Store，
+  Android 先轉官網首頁。寫進 Supabase 的 `log_link_click()`（App repo migration `20261006_link_clicks.sql`），
+  用的是 `wrangler.jsonc` 的 `vars`（Supabase URL 與公開的 anon key）。連結預覽爬蟲不算點擊。
+  任何英數小寫加連字號的管道名都能直接用；數字在後台 admin.littlestep.me「註冊與活躍」→「各管道點擊」。
+
+其他頁面與圖片是純靜態。**部署：`npx wrangler deploy`**（Cloudflare Workers，網域 littlestep.me）；
+只 push 到 GitHub 不會更新線上。
 
 本機預覽：
 
