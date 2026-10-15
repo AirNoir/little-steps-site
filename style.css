@@ -123,6 +123,18 @@ h3 { font-size: 1.12rem; color: var(--ink); }
   transition: box-shadow .15s ease;
 }
 .poster-cta:hover, .poster-cta:focus-visible { box-shadow: 0 0 0 3px rgba(255,255,255,.9), 0 0 0 6px var(--accent); outline: none; }
+/* 海報上疊的 Google Play 鈕：與原圖 App Store 鈕同寬、同色，排在它正下方 */
+.poster-play {
+  position: absolute; left: 4.45%; top: 70.4%; width: 26.4%; height: 7.2%;
+  display: flex; align-items: center; justify-content: center; gap: .55em;
+  border-radius: 999px; background: #2B5C59; color: #fff; text-decoration: none;
+  font-weight: 500; font-size: clamp(11px, 1.36vw, 19px); letter-spacing: .02em;
+  box-shadow: 0 8px 20px rgba(31,70,68,.22);
+  transition: background .15s ease, transform .15s ease;
+}
+.poster-play svg { width: 1.05em; height: 1.05em; fill: currentColor; }
+.poster-play:hover, .poster-play:focus-visible { background: var(--primary); transform: translateY(-1px); outline: none; }
+@media (max-width: 1000px) { .poster-play { display: none; } }
 /* 海報右側的 QR 貼紙（緊鄰下載鈕；1000px 以下太小掃不到就藏起來，手機版 hero 本來就不放） */
 .poster-qr {
   position: absolute; left: 33.2%; top: 58.8%; width: 9.6%;
