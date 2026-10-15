@@ -56,6 +56,12 @@ p { margin: 0; }
 .btn-light { background: #fff; color: var(--primary-deep); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
 .btn-light:hover { background: var(--cream); }
 .btn-sm { padding: 9px 16px; font-size: .9rem; }
+/* 兩個商店按鈕並排；第二顆（Google Play）左邊留距，窄螢幕時換行置中 */
+.btn + .btn-play { margin-left: 10px; }
+@media (max-width: 520px) {
+  .btn + .btn-play { margin-left: 0; margin-top: 10px; }
+  .hero-mobile .btn-store, .cta-band .btn-store { width: min(280px, 100%); justify-content: center; }
+}
 .btn-sm svg { width: 16px; height: 16px; }
 .cta-note { margin-top: 12px; font-size: .88rem; color: var(--subtle); }
 .cta-note.light { color: rgba(255,255,255,.7); }

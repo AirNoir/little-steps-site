@@ -17,8 +17,8 @@ const CONSENT_REGIONS = new Set([
 // 任何符合格式的管道名都收，新管道不用重新部署；後台「註冊與活躍」頁看數字。
 // 表與函式在 App repo migration 20261006_link_clicks.sql。
 const APP_STORE_URL = 'https://apps.apple.com/tw/app/id6761771211';
-// Android 版還在封閉測試，先帶去官網首頁（FAQ 有說明）
-const ANDROID_URL = 'https://littlestep.me/';
+// Android 版 2026-10 起在 Google Play 正式上架
+const ANDROID_URL = 'https://play.google.com/store/apps/details?id=com.airnoir.littlestepsv2';
 // 連結預覽爬蟲（Threads／FB／LINE 貼連結時會先抓一次）不算點擊
 const BOT_UA = /bot|crawl|spider|preview|facebookexternalhit|meta-externalagent|line-poker|whatsapp|telegram|slack|discord|curl|wget/i;
 
