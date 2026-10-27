@@ -192,6 +192,86 @@
         <p>回診前一鍵匯出摘要；另一半與長輩用邀請碼就能一起看、一起記。</p>
       </li>
     </ol>
+
+    <figure class="flow-figure">
+      <figcaption>完整流程：平常記、回診前整理、全家一起看</figcaption>
+      <div class="flow-scroll">
+        <svg class="flow-svg" viewBox="370 14 680 812" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="flow-t flow-d">
+        <title id="flow-t">小步腳印產品使用流程</title>
+        <desc id="flow-d">從觀察孩子、語音記錄、AI 整理，到回診摘要與全家共享的流程圖。</desc>
+        <defs>
+          <marker id="flow-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#5F6B6A"/></marker>
+          <marker id="flow-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#E39A62"/></marker>
+        </defs>
+
+        <!-- arrows：每一段都留 30px 間距 -->
+        <line x1="550" y1="78" x2="550" y2="108" stroke="#5F6B6A" stroke-width="1.3" marker-end="url(#flow-arrow)"/>
+        <line x1="550" y1="176" x2="550" y2="206" stroke="#5F6B6A" stroke-width="1.3" marker-end="url(#flow-arrow)"/>
+        <line x1="550" y1="274" x2="550" y2="304" stroke="#5F6B6A" stroke-width="1.3" marker-end="url(#flow-arrow)"/>
+        <line x1="550" y1="352" x2="550" y2="382" stroke="#5F6B6A" stroke-width="1.3" marker-end="url(#flow-arrow)"/>
+        <!-- 決策：右邊「下次」、下方「回診」 -->
+        <line x1="670" y1="440" x2="780" y2="440" stroke="#5F6B6A" stroke-width="1.3" marker-end="url(#flow-arrow)"/>
+        <line x1="550" y1="498" x2="550" y2="538" stroke="#E39A62" stroke-width="1.5" marker-end="url(#flow-arrow-accent)"/>
+        <line x1="550" y1="606" x2="550" y2="636" stroke="#5F6B6A" stroke-width="1.3" marker-end="url(#flow-arrow)"/>
+        <!-- 匯流：在「全家一起記」下方會合，不穿過方框 -->
+        <line x1="550" y1="704" x2="550" y2="726" stroke="#5F6B6A" stroke-width="1.3"/>
+        <path d="M900 474 V730 H556" fill="none" stroke="#5F6B6A" stroke-width="1.2"/>
+        <line x1="550" y1="734" x2="550" y2="756" stroke="#5F6B6A" stroke-width="1.3" marker-end="url(#flow-arrow)"/>
+
+        <!-- labels -->
+        <rect x="701" y="420" width="48" height="16" rx="3" fill="#FAF7F2"/>
+        <text x="725" y="432" fill="#5F6B6A" font-size="11" font-family="'Noto Sans TC', sans-serif" text-anchor="middle" letter-spacing="0.06em">還沒</text>
+        <rect x="560" y="508" width="48" height="16" rx="3" fill="#FAF7F2"/>
+        <text x="584" y="520" fill="#E39A62" font-size="11" font-family="'Noto Sans TC', sans-serif" text-anchor="middle" letter-spacing="0.06em" font-weight="700">要回診</text>
+
+        <!-- Start oval -->
+        <ellipse cx="550" cy="52" rx="130" ry="26" fill="#fff" stroke="#1B2A2F" stroke-width="1.4"/>
+        <text x="550" y="57" text-anchor="middle" fill="#1B2A2F" font-size="15" font-family="'Noto Sans TC', sans-serif" font-weight="600">觀察到孩子的一個小進步</text>
+
+        <!-- Step 1 -->
+        <rect x="390" y="108" width="320" height="68" rx="8" fill="#fff" stroke="#1B2A2F" stroke-width="1.3"/>
+        <text x="550" y="136" text-anchor="middle" fill="#2C5F5D" font-size="12" font-family="'IBM Plex Mono', monospace" letter-spacing="0.08em">STEP 1</text>
+        <text x="550" y="158" text-anchor="middle" fill="#1B2A2F" font-size="16" font-family="'Noto Sans TC', sans-serif" font-weight="700">對著手機說一段話</text>
+
+        <!-- Step 2 -->
+        <rect x="390" y="206" width="320" height="68" rx="8" fill="#fff" stroke="#1B2A2F" stroke-width="1.3"/>
+        <text x="550" y="234" text-anchor="middle" fill="#2C5F5D" font-size="12" font-family="'IBM Plex Mono', monospace" letter-spacing="0.08em">STEP 2 · AI</text>
+        <text x="550" y="256" text-anchor="middle" fill="#1B2A2F" font-size="16" font-family="'Noto Sans TC', sans-serif" font-weight="700">自動整理成成長紀錄</text>
+
+        <!-- Step 3 -->
+        <rect x="390" y="304" width="320" height="48" rx="8" fill="#fff" stroke="#1B2A2F" stroke-width="1.3"/>
+        <text x="550" y="334" text-anchor="middle" fill="#1B2A2F" font-size="15" font-family="'Noto Sans TC', sans-serif" font-weight="600">歸到六大領域 · 標出情緒與進步</text>
+
+        <!-- Decision：放大到 240×116，文字有呼吸空間 -->
+        <path d="M550 382 L670 440 L550 498 L430 440 Z" fill="#fff" stroke="#E39A62" stroke-width="2"/>
+        <text x="550" y="437" text-anchor="middle" fill="#1B2A2F" font-size="15" font-family="'Noto Sans TC', sans-serif" font-weight="700">要回診了嗎？</text>
+        <text x="550" y="458" text-anchor="middle" fill="#5F6B6A" font-size="11.5" font-family="'Noto Sans TC', sans-serif">需要整理摘要嗎</text>
+
+        <!-- Clinic path -->
+        <rect x="390" y="538" width="320" height="68" rx="8" fill="rgba(227,154,98,0.12)" stroke="#E39A62" stroke-width="1.8"/>
+        <text x="550" y="566" text-anchor="middle" fill="#1F4644" font-size="12" font-family="'IBM Plex Mono', monospace" letter-spacing="0.06em">FOCAL</text>
+        <text x="550" y="588" text-anchor="middle" fill="#1B2A2F" font-size="16" font-family="'Noto Sans TC', sans-serif" font-weight="700">一鍵匯出回診摘要</text>
+
+        <!-- Family share -->
+        <rect x="390" y="636" width="320" height="68" rx="8" fill="#fff" stroke="#1B2A2F" stroke-width="1.3"/>
+        <text x="550" y="664" text-anchor="middle" fill="#2C5F5D" font-size="12" font-family="'IBM Plex Mono', monospace" letter-spacing="0.08em">OPTIONAL</text>
+        <text x="550" y="686" text-anchor="middle" fill="#1B2A2F" font-size="15" font-family="'Noto Sans TC', sans-serif" font-weight="700">邀請碼 · 全家一起記</text>
+
+        <!-- Continue branch：中心對齊決策點 y=440 -->
+        <rect x="780" y="406" width="240" height="68" rx="8" fill="#fff" stroke="#1B2A2F" stroke-width="1.2"/>
+        <text x="900" y="434" text-anchor="middle" fill="#5F6B6A" font-size="12" font-family="'IBM Plex Mono', monospace">CONTINUE</text>
+        <text x="900" y="456" text-anchor="middle" fill="#1B2A2F" font-size="14" font-family="'Noto Sans TC', sans-serif" font-weight="600">繼續日常觀察與錄音</text>
+
+        <!-- merge dot -->
+        <circle cx="550" cy="730" r="4" fill="#1B2A2F"/>
+
+        <!-- End -->
+        <ellipse cx="550" cy="786" rx="150" ry="28" fill="#1F4644" stroke="#1F4644" stroke-width="1.4"/>
+        <text x="550" y="792" text-anchor="middle" fill="#FAF7F2" font-size="15" font-family="'Noto Sans TC', sans-serif" font-weight="700">每一小步，都算數 · littlestep.me</text>
+      </svg>
+      </div>
+      <p class="flow-hint">← 左右滑動看完整流程 →</p>
+    </figure>
   </div>
 </section>
 

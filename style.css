@@ -596,3 +596,11 @@ footer .wrap > span { color: var(--subtle); }
   .cookie-actions .btn { flex: 1; justify-content: center; }
 }
 .doc .cookie-settings { margin-top: 10px; border: 0; cursor: pointer; font-family: inherit; }
+
+/* ── 完整流程圖（三步驟下方）：窄螢幕可以左右滑，字不會縮到看不見 ── */
+.flow-figure { margin: 56px auto 0; max-width: 760px; }
+.flow-figure figcaption { text-align: center; color: var(--muted, #5F6B6A); font-size: .95rem; margin-bottom: 14px; }
+.flow-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; background: #FAF7F2; border: 1px solid rgba(27,42,47,.12); border-radius: 18px; padding: 8px; }
+.flow-svg { display: block; width: 100%; min-width: 500px; height: auto; }
+.flow-hint { display: none; text-align: center; color: var(--muted); font-size: .85rem; margin-top: 10px; }
+@media (max-width: 560px) { .flow-hint { display: block; } }
